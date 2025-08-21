@@ -1,0 +1,42 @@
+{
+	"name": "@netflix-clone/common",
+	"version": "1.0.0",
+	"description": "Shared filters, interceptors, decorators, guards, and exception handlers for Netflix Clone",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "tsc -p tsconfig.json",
+		"prepublishOnly": "npm run build",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"netflix",
+		"common",
+		"shared",
+		"nestjs",
+		"guards",
+		"interceptors"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Netflix-Nest/Netflix-Common.git"
+	},
+	"author": "Cao Nguyen Tri Ngoc",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Netflix-Nest/Netflix-Common/issues"
+	},
+	"homepage": "https://github.com/Netflix-Nest/Netflix-Common#readme",
+	"peerDependencies": {
+		"@nestjs/common": "^10.0.0 || ^11.0.0",
+		"@nestjs/core": "^10.0.0 || ^11.0.0",
+		"@nestjs/passport": "^10.0.0 || ^11.0.0",
+		"@nestjs/microservices": "^10.0.0 || ^11.0.0",
+		"@nestjs/cache-manager": "^2.0.0 || ^3.0.0",
+		"rxjs": "^7.0.0"
+	},
+	"devDependencies": {
+		"typescript": "^5.0.0",
+		"@types/express": "^5.0.3"
+	}
+}

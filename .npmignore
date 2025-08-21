@@ -1,0 +1,26 @@
+# Node modules
+node_modules
+
+# Build output
+src
+coverage
+test
+tests
+__tests__
+
+# Config files
+tsconfig.json
+tsconfig.build.json
+jest.config.js
+.eslintrc.js
+.eslintrc.json
+.prettierrc
+.prettierrc.js
+.prettierrc.json
+
+# Git / IDE
+.git
+.gitignore
+.npmignore
+.vscode
+.DS_Store

@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"target": "ES2017",
+		"module": "CommonJS",
+		"declaration": true,
+		"outDir": "./dist",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"strictPropertyInitialization": false,
+		"noImplicitAny": false
+	},
+	"include": ["src"]
+}
