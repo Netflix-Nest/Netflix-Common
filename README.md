@@ -11,11 +11,11 @@ A reusable NestJS package to keep your **microservices** consistent and DRY (Don
 
 ## Features
 
--   **Guards**: JWT Auth Guard, Local Auth Guard
--   **Decorators**: `@Public()`, `@SkipCheckPermission()`, `@User()`
--   **Interceptors**: Logging, Caching, Transform response
--   **Filters**: Global exception filter (support both HTTP & RPC)
--   Designed for **NestJS microservices architecture**
+- **Guards**: JWT Auth Guard, Local Auth Guard
+- **Decorators**: `@Public()`, `@SkipCheckPermission()`, `@User()`
+- **Interceptors**: Logging, Caching, Transform response
+- **Filters**: Global exception filter (support both HTTP & RPC)
+- Designed for **NestJS microservices architecture**
 
 ---
 
@@ -104,27 +104,6 @@ import { APP_FILTER } from '@nestjs/core';
   ],
 })
 export class AppModule {}
-```
-
-## Development
-
-Clone the repo:
-
-```bash
-git clone https://github.com/Netflix-Nest/Netflix-Common.git
-cd Netflix-Common
-```
-
-Build the package:
-
-```bash
-npm run build
-```
-
-Publish to npm:
-
-```bash
-npm publish --access public
 ```
 
 ## License
