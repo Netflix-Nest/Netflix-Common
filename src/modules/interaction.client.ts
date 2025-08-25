@@ -4,25 +4,25 @@ import { RMQClientOptions } from "../interfaces/client.options";
 
 @Module({})
 export class InteractionClientModule {
-	static register(options: RMQClientOptions): DynamicModule {
+	static registerAsync(options: RMQClientOptions): DynamicModule {
 		return {
 			module: InteractionClientModule,
+			imports: options.imports || [],
 			providers: [
 				{
 					provide: "INTERACTION_SERVICE",
-					useFactory: () => {
+					useFactory: async (...args: any[]) => {
+						const cfg = options.useFactory(...args);
 						return ClientProxyFactory.create({
 							transport: Transport.RMQ,
 							options: {
-								urls: [
-									options.urls ||
-										"amqp://netflix-rabbitmq:5672",
-								],
-								queue: options.queue || "interaction_queue",
-								queueOptions: options.queueOptions,
+								urls: [cfg.urls],
+								queue: cfg.queue,
+								queueOptions: cfg.queueOptions,
 							},
 						});
 					},
+					inject: options.inject || [],
 				},
 			],
 			exports: ["INTERACTION_SERVICE"],

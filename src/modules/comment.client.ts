@@ -4,22 +4,25 @@ import { RedisClientOptions } from "../interfaces/client.options";
 
 @Module({})
 export class CommentClientModule {
-	static register(options: RedisClientOptions): DynamicModule {
+	static registerAsync(options: RedisClientOptions): DynamicModule {
 		return {
 			module: CommentClientModule,
+			imports: options.imports || [],
 			providers: [
 				{
 					provide: "COMMENT_SERVICE",
-					useFactory: () => {
+					useFactory: async (...args: any[]) => {
+						const cfg = options.useFactory(...args);
 						return ClientProxyFactory.create({
 							transport: Transport.REDIS,
 							options: {
-								host: options.host || "localhost",
-								port: options.port || 6379,
-								password: options.password,
+								host: cfg.host,
+								port: cfg.port,
+								password: cfg.password,
 							},
 						});
 					},
+					inject: options.inject || [],
 				},
 			],
 			exports: ["COMMENT_SERVICE"],

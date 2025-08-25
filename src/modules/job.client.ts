@@ -4,25 +4,25 @@ import { RMQClientOptions } from "../interfaces/client.options";
 
 @Module({})
 export class JobClientModule {
-	static register(options: RMQClientOptions): DynamicModule {
+	static registerAsync(options: RMQClientOptions): DynamicModule {
 		return {
 			module: JobClientModule,
+			imports: options.imports || [],
 			providers: [
 				{
 					provide: "JOB_SERVICE",
-					useFactory: () => {
+					useFactory: async (...args: any[]) => {
+						const cfg = options.useFactory(...args);
 						return ClientProxyFactory.create({
 							transport: Transport.RMQ,
 							options: {
-								urls: [
-									options.urls ||
-										"amqp://netflix-rabbitmq:5672",
-								],
-								queue: options.queue || "job_queue",
-								queueOptions: options.queueOptions,
+								urls: [cfg.urls],
+								queue: cfg.queue,
+								queueOptions: cfg.queueOptions,
 							},
 						});
 					},
+					inject: options.inject || [],
 				},
 			],
 			exports: ["JOB_SERVICE"],

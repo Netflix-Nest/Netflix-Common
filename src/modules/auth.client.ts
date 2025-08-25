@@ -1,10 +1,10 @@
 import { DynamicModule, Module } from "@nestjs/common";
 import { ClientProxyFactory, Transport } from "@nestjs/microservices";
-import { AuthClientOptions } from "../interfaces/client.options";
+import { RedisClientOptions } from "../interfaces/client.options";
 
 @Module({})
 export class AuthClientModule {
-	static registerAsync(options: AuthClientOptions): DynamicModule {
+	static registerAsync(options: RedisClientOptions): DynamicModule {
 		return {
 			module: AuthClientModule,
 			imports: options.imports || [],
