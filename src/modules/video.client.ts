@@ -16,7 +16,7 @@ export class VideoClientModule {
 						return ClientProxyFactory.create({
 							transport: Transport.RMQ,
 							options: {
-								urls: [cfg.urls],
+								urls: cfg.urls,
 								queue: cfg.queue,
 								queueOptions: cfg.queueOptions,
 							},
