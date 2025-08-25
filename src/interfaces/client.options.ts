@@ -12,7 +12,7 @@ export interface RedisClientOptions {
 
 export interface RMQClientOptions {
 	useFactory: (...args: any[]) => {
-		urls: string;
+		urls: string[];
 		queue: string;
 		queueOptions?: AmqplibQueueOptions;
 	};
