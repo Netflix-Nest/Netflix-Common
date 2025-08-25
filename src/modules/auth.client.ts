@@ -1,25 +1,28 @@
 import { DynamicModule, Module } from "@nestjs/common";
 import { ClientProxyFactory, Transport } from "@nestjs/microservices";
-import { RedisClientOptions } from "../interfaces/client.options";
+import { AuthClientOptions } from "../interfaces/client.options";
 
 @Module({})
 export class AuthClientModule {
-	static register(options: RedisClientOptions): DynamicModule {
+	static registerAsync(options: AuthClientOptions): DynamicModule {
 		return {
 			module: AuthClientModule,
+			imports: options.imports || [],
 			providers: [
 				{
 					provide: "AUTH_SERVICE",
-					useFactory: () => {
+					useFactory: async (...args: any[]) => {
+						const cfg = options.useFactory(...args);
 						return ClientProxyFactory.create({
 							transport: Transport.REDIS,
 							options: {
-								host: options.host || "localhost",
-								port: options.port || 6379,
-								password: options.password,
+								host: cfg.host,
+								port: cfg.port,
+								password: cfg.password,
 							},
 						});
 					},
+					inject: options.inject || [],
 				},
 			],
 			exports: ["AUTH_SERVICE"],

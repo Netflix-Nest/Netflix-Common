@@ -11,3 +11,13 @@ export interface RMQClientOptions {
 	queue?: string;
 	queueOptions?: AmqplibQueueOptions;
 }
+
+export interface AuthClientOptions {
+	useFactory: (...args: any[]) => {
+		host: string;
+		port: number;
+		password?: string;
+	};
+	inject?: any[];
+	imports?: any[];
+}
