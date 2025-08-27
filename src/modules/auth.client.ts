@@ -11,7 +11,7 @@ export class AuthClientModule {
 			providers: [
 				{
 					provide: "AUTH_SERVICE",
-					useFactory: async (...args: any[]) => {
+					useFactory: (...args: any[]) => {
 						const cfg = options.useFactory(...args);
 						return ClientProxyFactory.create({
 							transport: Transport.REDIS,

@@ -11,7 +11,7 @@ export class EngagementClientModule {
 			providers: [
 				{
 					provide: "ENGAGEMENT_SERVICE",
-					useFactory: async (...args: any[]) => {
+					useFactory: (...args: any[]) => {
 						const cfg = options.useFactory(...args);
 						return ClientProxyFactory.create({
 							transport: Transport.RMQ,

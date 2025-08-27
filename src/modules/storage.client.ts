@@ -11,7 +11,7 @@ export class StorageClientModule {
 			providers: [
 				{
 					provide: "STORAGE_SERVICE",
-					useFactory: async (...args: any[]) => {
+					useFactory: (...args: any[]) => {
 						const cfg = options.useFactory(...args);
 						return ClientProxyFactory.create({
 							transport: Transport.RMQ,
