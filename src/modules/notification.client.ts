@@ -1,0 +1,31 @@
+import { DynamicModule, Module } from "@nestjs/common";
+import { ClientProxyFactory, Transport } from "@nestjs/microservices";
+import { RMQClientOptions } from "../interfaces/client.options";
+
+@Module({})
+export class NotificationClientModule {
+	static registerAsync(options: RMQClientOptions): DynamicModule {
+		return {
+			module: NotificationClientModule,
+			imports: options.imports || [],
+			providers: [
+				{
+					provide: "NOTIFICATION_SERVICE",
+					useFactory: (...args: any[]) => {
+						const cfg = options.useFactory(...args);
+						return ClientProxyFactory.create({
+							transport: Transport.RMQ,
+							options: {
+								urls: cfg.urls,
+								queue: cfg.queue,
+								queueOptions: cfg.queueOptions,
+							},
+						});
+					},
+					inject: options.inject || [],
+				},
+			],
+			exports: ["NOTIFICATION_SERVICE"],
+		};
+	}
+}
